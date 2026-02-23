@@ -33,6 +33,9 @@
 
 ### **How to run**
 
+Render: https://leap-y2r7.onrender.com
+
+For local machine:
 pip install flask pytest  
 python run.py          \# starts web UI on http://localhost:5000  
 python \-m pytest tests/ \-v   \# runs 78 tests
