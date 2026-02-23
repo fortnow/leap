@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: leap
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn leap.ui.app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.6"
+      - key: SECRET_KEY
+        generateValue: true

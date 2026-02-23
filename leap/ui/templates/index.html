@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEAP — Logic Engine for Argument by Pointing</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>LEAP</h1>
+        <p class="subtitle">Logic Engine for Argument by Pointing</p>
+    </header>
+
+    <main>
+        <!-- Start screen -->
+        <section id="start-screen">
+            <div class="input-area">
+                <label for="formula-input">Enter a formula to prove:</label>
+                <div class="input-row">
+                    <input type="text" id="formula-input"
+                           placeholder="e.g. (P -> Q) -> (Q -> R) -> (P -> R)"
+                           autocomplete="off">
+                    <button id="prove-btn" onclick="startProof()">Prove</button>
+                </div>
+                <div class="input-help">
+                    Syntax: <code>-></code> implication, <code>&amp;</code> and,
+                    <code>|</code> or, <code>~</code> not,
+                    <code>forall x.</code> / <code>exists x.</code>,
+                    <code>T</code> true, <code>F</code> false
+                </div>
+            </div>
+            <div class="examples">
+                <h3>Example theorems:</h3>
+                <div id="example-list"></div>
+            </div>
+        </section>
+
+        <!-- Proof screen -->
+        <section id="proof-screen" style="display:none">
+            <div class="toolbar">
+                <button onclick="undoStep()" id="undo-btn" disabled>Undo</button>
+                <button onclick="resetProof()">New Proof</button>
+                <span id="status-text"></span>
+            </div>
+
+            <div class="proof-area">
+                <!-- Current goal (clickable sequent) -->
+                <div class="current-goal">
+                    <h3>Current Goal <span id="goal-counter"></span></h3>
+                    <div id="sequent-display" class="sequent-container"></div>
+                </div>
+
+                <!-- Message area -->
+                <div id="message-area" class="message-area" style="display:none"></div>
+
+                <!-- Disambiguation dialog -->
+                <div id="choice-dialog" class="dialog" style="display:none">
+                    <h4 id="choice-prompt"></h4>
+                    <div id="choice-buttons"></div>
+                </div>
+
+                <!-- Term input dialog -->
+                <div id="term-dialog" class="dialog" style="display:none">
+                    <h4 id="term-prompt"></h4>
+                    <div class="input-row">
+                        <input type="text" id="term-input" placeholder="x"
+                               autocomplete="off">
+                        <button onclick="submitTerm()">OK</button>
+                        <button onclick="cancelInput()">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Open goals list -->
+                <div class="goals-list">
+                    <h3>Open Goals</h3>
+                    <div id="goals-list-content"></div>
+                </div>
+
+                <!-- Proof tree -->
+                <div class="proof-tree-section">
+                    <h3>Proof Tree</h3>
+                    <div id="proof-tree" class="proof-tree"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Victory screen -->
+        <div id="victory-overlay" class="victory-overlay" style="display:none">
+            <div class="victory-content">
+                <h2>QED</h2>
+                <p>Proof complete!</p>
+                <button onclick="resetProof()">Prove Another</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>
