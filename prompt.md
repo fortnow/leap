@@ -1,6 +1,9 @@
 **Prompt given to Claude Code**
+
 Architecture of a system to support proof by pointing in first order logic using LEAP
+
 **Initial Response**
+
 Now I have a solid understanding of the concept. Let me design the architecture.
 
 ---
